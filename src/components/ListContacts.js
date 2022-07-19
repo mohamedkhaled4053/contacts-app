@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 function ListContacts({ contacts, removeContact }) {
   return (
     <ol className="contact-list">
@@ -20,6 +22,11 @@ function ListContacts({ contacts, removeContact }) {
       ))}
     </ol>
   );
+}
+
+ListContacts.propTypes = {
+  contacts : PropTypes.array.isRequired,
+  removeContact : PropTypes.func.isRequired
 }
 
 export default ListContacts;

@@ -25,12 +25,12 @@ const App = () => {
   ])
 
   function removeContact(contact) {
-      setContacts(contacts.filter(c => c.id != contact.id))
+      setContacts(contacts.filter(c => c.id !== contact.id))
   }
 
   return (
     <div>
-      <ListContacts contacts={{}} removeContact ={removeContact}/>
+      <ListContacts contacts={contacts} removeContact ={removeContact}/>
     </div>
   )
 };
