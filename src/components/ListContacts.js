@@ -1,21 +1,21 @@
-function ListContacts({ contacts }) {
-  console.log(contacts);
+function ListContacts({ contacts, removeContact }) {
   return (
     <ol className="contact-list">
       {contacts.map((contact) => (
-        <li key={contact.id} className = 'contact-list-item'>
-            <div 
-            className="contact-avatar" 
+        <li key={contact.id} className="contact-list-item">
+          <div
+            className="contact-avatar"
             style={{
-                backgroundImage : `url(${contact.avatarURL})`
-            }}></div>
+              backgroundImage: `url(${contact.avatarURL})`,
+            }}
+          ></div>
 
-            <div className="contact-details">
-                <p>{contact.name}</p>
-                <p>{contact.handle}</p>
-            </div>
+          <div className="contact-details">
+            <p>{contact.name}</p>
+            <p>{contact.handle}</p>
+          </div>
 
-            <button className="contact-remove">remove</button>
+          <button className="contact-remove" onClick={()=> removeContact(contact)}>remove</button>
         </li>
       ))}
     </ol>
