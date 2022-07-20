@@ -5,8 +5,15 @@ function ListContacts({ contacts, removeContact }) {
   let [query, setQuery] = useState("");
 
   function updateQuery(value) {
-    setQuery(value.trim())
+    setQuery(value.trim());
   }
+
+  let showing =
+    query === ""
+      ? contacts
+      : contacts.filter((c) =>
+          c.name.toLowerCase().includes(query.toLowerCase())
+        );
 
   return (
     <div className="list-contacts">
@@ -16,13 +23,21 @@ function ListContacts({ contacts, removeContact }) {
           className="search-contacts"
           placeholder="Search Contacts"
           value={query}
-          onChange = {(e) => updateQuery(e.target.value)}
+          onChange={(e) => updateQuery(e.target.value)}
         ></input>
       </div>
 
+      {showing.length !== contacts.length && (
+        <div className="showing-contacts">
+          <span>
+            Now showing {showing.length} of {contacts.length}
+          </span>
+          <button onClick={() => setQuery("")}>Show all</button>
+        </div>
+      )}
+
       <ol className="contact-list">
-        {console.log(query)}
-        {contacts.map((contact) => (
+        {showing.map((contact) => (
           <li key={contact.id} className="contact-list-item">
             <div
               className="contact-avatar"
